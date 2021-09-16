@@ -21,8 +21,8 @@
 
 		<header class="header">
 			<img src="img/logo.png" alt="Nexter logo" class="header__logo" />
-			<h3 class="heading-3">Tu propia casa:</h3>
-			<h1 class="heading-1">La máxima libertad personal</h1>
+			<h3 class="heading-3 ml12">Tu propia casa:</h3>
+			<h1 class="heading-1 ml2">La máxima libertad personal</h1>
 			<button class="btn header__btn">Mira nuestras propiedades</button>
 			<div class="header__seenon-text">Vistos en</div>
 			<div class="header__seenon-logos">
@@ -38,19 +38,19 @@
 			<div class="realtors__list">
 				<img src="img/realtor-1.jpeg" alt="Realtor 1" class="realtors__img" />
 				<div class="realtors__details">
-					<h4 class="heading-4 heading-4--light">Erik Feinman</h4>
+					<h4 class="heading-4 heading-4--light ml0">Erik Feinman</h4>
 					<p class="realtors__sold">245 casas vendidas</p>
 				</div>
 
 				<img src="img/realtor-2.jpeg" alt="Realtor 2" class="realtors__img" />
 				<div class="realtors__details">
-					<h4 class="heading-4 heading-4--light">Kim Brown</h4>
+					<h4 class="heading-4 heading-4--light ml0">Kim Brown</h4>
 					<p class="realtors__sold">212 casas vendidas</p>
 				</div>
 
 				<img src="img/realtor-3.jpeg" alt="Realtor 3" class="realtors__img" />
 				<div class="realtors__details">
-					<h4 class="heading-4 heading-4--light">Toby Ramsey</h4>
+					<h4 class="heading-4 heading-4--light ml0">Toby Ramsey</h4>
 					<p class="realtors__sold">198 casas vendidas</p>
 				</div>
 			</div>
@@ -444,5 +444,84 @@
 		</footer>
 
 		<script src="./js/main.js"></script>
+		<script src="./js/anime.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+		<script>
+			const textWrapper = document.querySelector('.ml2');
+			textWrapper.innerHTML = textWrapper.textContent.replace(
+				/\S/g,
+				"<span class='letter'>$&</span>"
+			);
+
+			anime
+				.timeline({ loop: false })
+				.add({
+					targets: '.ml2 .letter',
+					scale: [4, 1],
+					opacity: [0, 1],
+					translateZ: 0,
+					easing: 'easeOutExpo',
+					duration: 100,
+					delay: (el, i) => 70 * i,
+				})
+				.add({
+					targets: '.ml2',
+					opacity: 1,
+					duration: 1000,
+					easing: 'easeOutExpo',
+					delay: 1000,
+				});
+
+			var textWrappers = document.querySelectorAll('.ml0');
+			for (let i = 0; i < textWrappers.length; i++) {
+				textWrappers[i].innerHTML = textWrappers[i].textContent.replace(
+					/\S/g,
+					"<span class='letter'>$&</span>"
+				);
+
+				anime
+					.timeline({ loop: false })
+					.add({
+						targets: '.ml0 .letter',
+						opacity: [0, 1],
+						easing: 'easeInOutQuad',
+						duration: 100,
+						delay: (el, i) => 60 * (i + 1),
+					})
+					.add({
+						targets: '.ml0',
+						opacity: 1,
+						duration: 1000,
+						easing: 'easeOutExpo',
+						delay: 1000,
+					});
+			}
+
+			var textWrapperss = document.querySelector('.ml12');
+			textWrapperss.innerHTML = textWrapperss.textContent.replace(
+				/\S/g,
+				"<span class='letter'>$&</span>"
+			);
+
+			anime
+				.timeline({ loop: false })
+				.add({
+					targets: '.ml12 .letter',
+					translateX: [40, 0],
+					translateZ: 0,
+					opacity: [0, 1],
+					easing: 'easeOutExpo',
+					duration: 1200,
+					delay: (el, i) => 500 + 30 * i,
+				})
+				.add({
+					targets: '.ml12 .letter',
+					translateX: [0, -30],
+					opacity: [1, 1],
+					easing: 'easeInExpo',
+					duration: 1100,
+					delay: (el, i) => 150 + 30 * i,
+				});
+		</script>
 	</body>
 </html>
